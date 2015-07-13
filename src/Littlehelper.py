@@ -5,8 +5,8 @@
 # Little Helper is just an utility module for
 # database and text methods
 #
-# v0.1.003
-# Issue #2
+# v0.1.004
+# Issue #3
 #
 # Rodrigo Nobrega
 # 20150713-
@@ -99,7 +99,7 @@ class LHFile(object):
         """
         :param file: string     - the log file, usually declared as variable LOGFILE
         """
-        self.file = file
+        self.file = r'{}'.format(file)
 
     def writeInfo(self, param):
         """
