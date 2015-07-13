@@ -5,7 +5,8 @@
 # Little Helper is just an utility module for
 # database and text methods
 #
-# v0.1.002
+# v0.1.003
+# Issue #2
 #
 # Rodrigo Nobrega
 # 20150713-
@@ -85,6 +86,45 @@ class LHQuery(object):
         c.execute(query, args)
         conn.commit()
         return True
+
+
+# LHFile
+# reused from Difool.DfLogFile()
+class LHFile(object):
+    """
+    DfLogFile opens a file, appends new info at the end, and closes it.
+        Modified on v0.1.0810 to receive the filename when instantiated
+    """
+    def __init__(self, file):
+        """
+        :param file: string     - the log file, usually declared as variable LOGFILE
+        """
+        self.file = file
+
+    def writeInfo(self, param):
+        """
+        Method to open a file in Append mode, write the argument passed as param,
+        add a new line, and close the file for writing.
+        :param param: string    - what to write to the log file
+        """
+        # open file in Append mode
+        f = open(self.file, 'a')
+        # write to file the argument param, and a new line
+        f.write(param)
+        f.write('\n')
+        # close the file
+        f.close()
+
+    def readInfo(self):
+        """
+        Method to scan the file, returns a list
+        """
+        arq = open(self.file, 'r')
+        result = []
+        #arq.readline()
+        [result.append(i) for i in arq]
+        arq.close()
+        return result
 
 
 # test loop
