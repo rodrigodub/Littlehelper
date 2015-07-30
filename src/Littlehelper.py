@@ -5,7 +5,7 @@
 # Little Helper is just an utility module for
 # database and text methods
 #
-# v0.1.007
+# v0.1.008
 # Issue #5
 #
 # Rodrigo Nobrega
@@ -131,13 +131,38 @@ class LHFile(object):
 
 
 class LHFtp(object):
-    """Class to provide FTP upload and download methods"""
+    """
+    LHFtp is a class to provide FTP upload and download methods
+    ----
+    Usage:
+    x = LHFtp('ftpserver.com.au', user=LHAuthenticate)
+        connects to 'ftpserver.com.au', using an LHAuthenticate instance as the user
+
+    x.cwd('newDirectory')
+        changes FTP working directory to 'newDirectory'
+
+    x.uploadFile()
+        uploads
+
+    x.downloadFile()
+        downloads
+    """
     def __init__(self, ftpserver, authentication=LHAuthenticate):
+        # connect and login
         self.ftp = FTP(ftpserver)
         self.ftp.login(user=authentication.username, passwd=authentication.pwd)
+        # acknowledge and list
+        print('Connected to {}'.format(ftpserver))
+        self.ftp.dir()
 
-    def cwd(self):
+    def cwd(self, wd):
         """Change FTP working directory"""
+        try:
+            self.ftp.cwd(wd)
+            print('CHanged to {}'.format(wd))
+            # self.ftp.dir()
+        except:
+            print('Directory does not exist.')
 
     def uploadFile(self):
         """Upload file to the current working directory"""
