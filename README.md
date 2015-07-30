@@ -1,2 +1,2 @@
 # Littlehelper
-Little Helper is just an utility module for database and text methods
+Little Helper is just an utility module for database, FTP and text methods
