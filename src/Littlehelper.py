@@ -5,17 +5,19 @@
 # Little Helper is just an utility module for
 # database and text methods
 #
-# v0.1.006
-# Issue #4
+# v0.1.007
+# Issue #5
 #
 # Rodrigo Nobrega
-# 20150713-20150714
+# 20150713-20150730
 #################################################
 __author__ = 'Rodrigo Nobrega'
 
 # import modules
 import pypyodbc
 import sqlite3
+from ftplib import FTP
+import getpass
 
 
 # LHAuthenticate() was developed as Godzilla.GzAuthenticate()
@@ -23,7 +25,7 @@ import sqlite3
 class LHAuthenticate(object):
     def __init__(self):
         self.username = input('Username: ')
-        self.pwd = input('Password: ')
+        self.pwd = getpass.getpass('Password: ')
 
 
 # Class LHQuery() aggregates all functions to query the databases.
@@ -119,13 +121,29 @@ class LHFile(object):
         """
         Method to scan the file, returns a list
         """
-        # arq = open(self.file, 'r')
-        arq = open(self.file, encoding='latin-1')
+        arq = open(self.file, 'r')
+        # arq = open(self.file, encoding='latin-1')
         result = []
         #arq.readline()
         [result.append(i) for i in arq]
         arq.close()
         return result
+
+
+class LHFtp(object):
+    """Class to provide FTP upload and download methods"""
+    def __init__(self, ftpserver, authentication=LHAuthenticate):
+        self.ftp = FTP(ftpserver)
+        self.ftp.login(user=authentication.username, passwd=authentication.pwd)
+
+    def cwd(self):
+        """Change FTP working directory"""
+
+    def uploadFile(self):
+        """Upload file to the current working directory"""
+
+    def downloadFile(self):
+        """Download file"""
 
 
 # test loop
@@ -144,5 +162,5 @@ def main():
 
 # main, calling main loop
 if __name__ == '__main__':
-    test()
-    # main()
+    # test()
+    main()
