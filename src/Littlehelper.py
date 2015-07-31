@@ -5,17 +5,18 @@
 # Little Helper is just an utility module for
 # database and text methods
 #
-# v0.1.009
+# v0.1.010
 # Issue #5
 #
 # Rodrigo Nobrega
-# 20150713-20150730
+# 20150713-20150731
 #################################################
 __author__ = 'Rodrigo Nobrega'
 
 # import modules
 import pypyodbc
 import sqlite3
+import os
 from ftplib import FTP
 import getpass
 
@@ -139,14 +140,17 @@ class LHFtp(object):
     x = LHFtp('ftpserver.com.au', user=LHAuthenticate)
         connects to 'ftpserver.com.au', using an LHAuthenticate instance as the user
 
-    x.cwd('newDirectory')
+    x.setRemoteDir('newDirectory')
         changes FTP working directory to 'newDirectory'
 
-    x.uploadFile()
-        uploads
+    x.setLocalDir('newLocalDirectory')
+        changes Local computer directory to 'newLocalDirectory'
 
-    x.downloadFile()
-        downloads
+    x.uploadFile('filename')
+        uploads 'filename' to FTP working directory
+
+    x.downloadFile('filename')
+        downloads 'filename' to Local working directory
 
     x.quit()
         closes FTP connection
@@ -159,14 +163,22 @@ class LHFtp(object):
         print('Connected to {}'.format(ftpserver))
         self.ftp.dir()
 
-    def cwd(self, wd):
-        """Change FTP working directory"""
+    def setRemoteDir(self, wd):
+        """Change FTP server working directory"""
         try:
             self.ftp.cwd(wd)
-            print('Changed to {}'.format(wd))
+            print('Remote directory changed to {}'.format(wd))
             # self.ftp.dir()
         except:
-            print('Directory does not exist.')
+            print('Remote directory does not exist.')
+
+    def setLocalDir(self, wd):
+        """Change Local computer working directory"""
+        try:
+            os.chdir(wd)
+            print('Local directory changed to {}'.format(os.getcwd()))
+        except:
+            print('Local directory does not exist.')
 
     def uploadFile(self, filename):
         """Upload file to the current working directory"""
@@ -180,6 +192,7 @@ class LHFtp(object):
     def quit(self):
         """Quit FTP connection"""
         self.ftp.quit()
+        print('Goodbye.')
 
 
 # test loop
