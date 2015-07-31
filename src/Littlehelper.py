@@ -5,8 +5,8 @@
 # Little Helper is just an utility module for
 # database and text methods
 #
-# v0.1.013
-# Issue
+# v0.1.014
+# Issue #6
 #
 # Rodrigo Nobrega
 # 20150713-20150731
@@ -156,6 +156,9 @@ class LHFtp(object):
     a.setLocalDir('newLocalDirectory')
         changes Local computer directory to 'newLocalDirectory'
 
+    a.makeDir('newRemoteDirectory')
+        creates a new directory 'newRemoteDirectory' on the FTP working directory
+
     a.uploadFile('filename')
         uploads 'filename' to FTP working directory
 
@@ -189,6 +192,14 @@ class LHFtp(object):
             print('Local directory changed to {}'.format(os.getcwd()))
         except:
             print('Local directory does not exist.')
+
+    def makeDir(self, directory):
+        """Creates a new subdirectory under the remote FTP working dir"""
+        try:
+            self.ftp.mkd(directory)
+            print("Created directory '{}' in the FTP working directory.".format(directory))
+        except:
+            print('Could not create remote subdirectory.')
 
     def uploadFile(self, filename):
         """Upload file to the current FTP working directory"""

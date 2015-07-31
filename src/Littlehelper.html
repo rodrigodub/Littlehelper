@@ -14,8 +14,8 @@
 #&nbsp;Little&nbsp;Helper&nbsp;is&nbsp;just&nbsp;an&nbsp;utility&nbsp;module&nbsp;for<br>
 #&nbsp;database&nbsp;and&nbsp;text&nbsp;methods<br>
 #<br>
-#&nbsp;v0.1.013<br>
-#&nbsp;Issue<br>
+#&nbsp;v0.1.014<br>
+#&nbsp;Issue&nbsp;#6<br>
 #<br>
 #&nbsp;Rodrigo&nbsp;Nobrega<br>
 #&nbsp;20150713-20150731<br>
@@ -127,6 +127,9 @@ a.<a href="#LHFtp-setRemoteDir">setRemoteDir</a>('newDirectory')<br>
 a.<a href="#LHFtp-setLocalDir">setLocalDir</a>('newLocalDirectory')<br>
 &nbsp;&nbsp;&nbsp;&nbsp;changes&nbsp;Local&nbsp;computer&nbsp;directory&nbsp;to&nbsp;'newLocalDirectory'<br>
 &nbsp;<br>
+a.<a href="#LHFtp-makeDir">makeDir</a>('newRemoteDirectory')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;creates&nbsp;a&nbsp;new&nbsp;directory&nbsp;'newRemoteDirectory'&nbsp;on&nbsp;the&nbsp;FTP&nbsp;working&nbsp;directory<br>
+&nbsp;<br>
 a.<a href="#LHFtp-uploadFile">uploadFile</a>('filename')<br>
 &nbsp;&nbsp;&nbsp;&nbsp;uploads&nbsp;'filename'&nbsp;to&nbsp;FTP&nbsp;working&nbsp;directory<br>
 &nbsp;<br>
@@ -140,6 +143,8 @@ a.<a href="#LHFtp-quit">quit</a>()<br>
 <dl><dt><a name="LHFtp-__init__"><strong>__init__</strong></a>(self, ftpserver, authentication=&lt;class 'Littlehelper.LHAuthenticate'&gt;)</dt></dl>
 
 <dl><dt><a name="LHFtp-downloadFile"><strong>downloadFile</strong></a>(self, filename)</dt><dd><tt>Download&nbsp;file&nbsp;to&nbsp;the&nbsp;local&nbsp;directory</tt></dd></dl>
+
+<dl><dt><a name="LHFtp-makeDir"><strong>makeDir</strong></a>(self, directory)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;subdirectory&nbsp;under&nbsp;the&nbsp;remote&nbsp;FTP&nbsp;working&nbsp;dir</tt></dd></dl>
 
 <dl><dt><a name="LHFtp-quit"><strong>quit</strong></a>(self)</dt><dd><tt>Quit&nbsp;FTP&nbsp;connection</tt></dd></dl>
 
