@@ -5,7 +5,7 @@
 # Little Helper is just an utility module for
 # database and text methods
 #
-# v0.1.010
+# v0.1.011
 # Issue #5
 #
 # Rodrigo Nobrega
@@ -181,13 +181,20 @@ class LHFtp(object):
             print('Local directory does not exist.')
 
     def uploadFile(self, filename):
-        """Upload file to the current working directory"""
+        """Upload file to the current FTP working directory"""
+        print('Uploading...')
         self.ftp.storbinary('STOR ' + filename, open(filename, 'rb'))
         print('{} uploaded to {}'.format(filename, self.ftp.pwd()))
         return
 
-    def downloadFile(self):
-        """Download file"""
+    def downloadFile(self, filename):
+        """Download file to the local directory"""
+        print('Downloading...')
+        localfile = open(filename, 'wb')
+        self.ftp.retrbinary('RETR ' + filename, localfile.write, 1024)
+        localfile.close()
+        print('{} downloaded to {}'.format(filename, os.getcwd()))
+        return
 
     def quit(self):
         """Quit FTP connection"""
