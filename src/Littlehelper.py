@@ -5,8 +5,8 @@
 # Little Helper is just an utility module for
 # database and text methods
 #
-# v0.1.012
-# Issue #5
+# v0.1.013
+# Issue
 #
 # Rodrigo Nobrega
 # 20150713-20150731
@@ -95,8 +95,18 @@ class LHQuery(object):
 # reused from Difool.DfLogFile()
 class LHFile(object):
     """
-    DfLogFile opens a file, appends new info at the end, and closes it.
-        Modified on v0.1.0810 to receive the filename when instantiated
+    LHFile opens a file for reading or writing (appending), and closes it.
+    ------
+    Usage:
+    ------
+    file = LHFile('filename')
+        creates an instance of the file 'filename'
+
+    file.readInfo()
+        returns the content of 'filename' as a list
+
+    file.writeInfo('Something to write at the end.')
+        writes 'Something to write at the end.' at the end of 'filename'
     """
     def __init__(self, file):
         """
@@ -137,22 +147,22 @@ class LHFtp(object):
     ------
     Usage:
     ------
-    x = LHFtp('ftpserver.com.au', user=LHAuthenticate)
+    a = LHFtp('ftpserver.com.au', user=LHAuthenticate)
         connects to 'ftpserver.com.au', using an LHAuthenticate instance as the user
 
-    x.setRemoteDir('newDirectory')
+    a.setRemoteDir('newDirectory')
         changes FTP working directory to 'newDirectory'
 
-    x.setLocalDir('newLocalDirectory')
+    a.setLocalDir('newLocalDirectory')
         changes Local computer directory to 'newLocalDirectory'
 
-    x.uploadFile('filename')
+    a.uploadFile('filename')
         uploads 'filename' to FTP working directory
 
-    x.downloadFile('filename')
+    a.downloadFile('filename')
         downloads 'filename' to Local working directory
 
-    x.quit()
+    a.quit()
         closes FTP connection
     """
     def __init__(self, ftpserver, authentication=LHAuthenticate):

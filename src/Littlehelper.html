@@ -14,8 +14,8 @@
 #&nbsp;Little&nbsp;Helper&nbsp;is&nbsp;just&nbsp;an&nbsp;utility&nbsp;module&nbsp;for<br>
 #&nbsp;database&nbsp;and&nbsp;text&nbsp;methods<br>
 #<br>
-#&nbsp;v0.1.010<br>
-#&nbsp;Issue&nbsp;#5<br>
+#&nbsp;v0.1.013<br>
+#&nbsp;Issue<br>
 #<br>
 #&nbsp;Rodrigo&nbsp;Nobrega<br>
 #&nbsp;20150713-20150731<br>
@@ -77,8 +77,18 @@ Data descriptors defined here:<br>
 <font color="#000000" face="helvetica, arial"><a name="LHFile">class <strong>LHFile</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>DfLogFile&nbsp;opens&nbsp;a&nbsp;file,&nbsp;appends&nbsp;new&nbsp;info&nbsp;at&nbsp;the&nbsp;end,&nbsp;and&nbsp;closes&nbsp;it.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Modified&nbsp;on&nbsp;v0.1.0810&nbsp;to&nbsp;receive&nbsp;the&nbsp;filename&nbsp;when&nbsp;instantiated<br>&nbsp;</tt></td></tr>
+<td colspan=2><tt><a href="#LHFile">LHFile</a>&nbsp;opens&nbsp;a&nbsp;file&nbsp;for&nbsp;reading&nbsp;or&nbsp;writing&nbsp;(appending),&nbsp;and&nbsp;closes&nbsp;it.<br>
+------<br>
+Usage:<br>
+------<br>
+file&nbsp;=&nbsp;<a href="#LHFile">LHFile</a>('filename')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;creates&nbsp;an&nbsp;instance&nbsp;of&nbsp;the&nbsp;file&nbsp;'filename'<br>
+&nbsp;<br>
+file.<a href="#LHFile-readInfo">readInfo</a>()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;returns&nbsp;the&nbsp;content&nbsp;of&nbsp;'filename'&nbsp;as&nbsp;a&nbsp;list<br>
+&nbsp;<br>
+file.<a href="#LHFile-writeInfo">writeInfo</a>('Something&nbsp;to&nbsp;write&nbsp;at&nbsp;the&nbsp;end.')<br>
+&nbsp;&nbsp;&nbsp;&nbsp;writes&nbsp;'Something&nbsp;to&nbsp;write&nbsp;at&nbsp;the&nbsp;end.'&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;'filename'<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="LHFile-__init__"><strong>__init__</strong></a>(self, file)</dt><dd><tt>:param&nbsp;file:&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;log&nbsp;file,&nbsp;usually&nbsp;declared&nbsp;as&nbsp;variable&nbsp;LOGFILE</tt></dd></dl>
@@ -108,28 +118,28 @@ Data descriptors defined here:<br>
 ------<br>
 Usage:<br>
 ------<br>
-x&nbsp;=&nbsp;<a href="#LHFtp">LHFtp</a>('ftpserver.com.au',&nbsp;user=<a href="#LHAuthenticate">LHAuthenticate</a>)<br>
+a&nbsp;=&nbsp;<a href="#LHFtp">LHFtp</a>('ftpserver.com.au',&nbsp;user=<a href="#LHAuthenticate">LHAuthenticate</a>)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;connects&nbsp;to&nbsp;'ftpserver.com.au',&nbsp;using&nbsp;an&nbsp;<a href="#LHAuthenticate">LHAuthenticate</a>&nbsp;instance&nbsp;as&nbsp;the&nbsp;user<br>
 &nbsp;<br>
-x.<a href="#LHFtp-setRemoteDir">setRemoteDir</a>('newDirectory')<br>
+a.<a href="#LHFtp-setRemoteDir">setRemoteDir</a>('newDirectory')<br>
 &nbsp;&nbsp;&nbsp;&nbsp;changes&nbsp;FTP&nbsp;working&nbsp;directory&nbsp;to&nbsp;'newDirectory'<br>
 &nbsp;<br>
-x.<a href="#LHFtp-setLocalDir">setLocalDir</a>('newLocalDirectory')<br>
+a.<a href="#LHFtp-setLocalDir">setLocalDir</a>('newLocalDirectory')<br>
 &nbsp;&nbsp;&nbsp;&nbsp;changes&nbsp;Local&nbsp;computer&nbsp;directory&nbsp;to&nbsp;'newLocalDirectory'<br>
 &nbsp;<br>
-x.<a href="#LHFtp-uploadFile">uploadFile</a>('filename')<br>
+a.<a href="#LHFtp-uploadFile">uploadFile</a>('filename')<br>
 &nbsp;&nbsp;&nbsp;&nbsp;uploads&nbsp;'filename'&nbsp;to&nbsp;FTP&nbsp;working&nbsp;directory<br>
 &nbsp;<br>
-x.<a href="#LHFtp-downloadFile">downloadFile</a>('filename')<br>
+a.<a href="#LHFtp-downloadFile">downloadFile</a>('filename')<br>
 &nbsp;&nbsp;&nbsp;&nbsp;downloads&nbsp;'filename'&nbsp;to&nbsp;Local&nbsp;working&nbsp;directory<br>
 &nbsp;<br>
-x.<a href="#LHFtp-quit">quit</a>()<br>
+a.<a href="#LHFtp-quit">quit</a>()<br>
 &nbsp;&nbsp;&nbsp;&nbsp;closes&nbsp;FTP&nbsp;connection<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="LHFtp-__init__"><strong>__init__</strong></a>(self, ftpserver, authentication=&lt;class 'Littlehelper.LHAuthenticate'&gt;)</dt></dl>
 
-<dl><dt><a name="LHFtp-downloadFile"><strong>downloadFile</strong></a>(self)</dt><dd><tt>Download&nbsp;file</tt></dd></dl>
+<dl><dt><a name="LHFtp-downloadFile"><strong>downloadFile</strong></a>(self, filename)</dt><dd><tt>Download&nbsp;file&nbsp;to&nbsp;the&nbsp;local&nbsp;directory</tt></dd></dl>
 
 <dl><dt><a name="LHFtp-quit"><strong>quit</strong></a>(self)</dt><dd><tt>Quit&nbsp;FTP&nbsp;connection</tt></dd></dl>
 
@@ -137,7 +147,7 @@ x.<a href="#LHFtp-quit">quit</a>()<br>
 
 <dl><dt><a name="LHFtp-setRemoteDir"><strong>setRemoteDir</strong></a>(self, wd)</dt><dd><tt>Change&nbsp;FTP&nbsp;server&nbsp;working&nbsp;directory</tt></dd></dl>
 
-<dl><dt><a name="LHFtp-uploadFile"><strong>uploadFile</strong></a>(self, filename)</dt><dd><tt>Upload&nbsp;file&nbsp;to&nbsp;the&nbsp;current&nbsp;working&nbsp;directory</tt></dd></dl>
+<dl><dt><a name="LHFtp-uploadFile"><strong>uploadFile</strong></a>(self, filename)</dt><dd><tt>Upload&nbsp;file&nbsp;to&nbsp;the&nbsp;current&nbsp;FTP&nbsp;working&nbsp;directory</tt></dd></dl>
 
 <hr>
 Data descriptors defined here:<br>
